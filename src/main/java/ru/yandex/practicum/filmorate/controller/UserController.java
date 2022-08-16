@@ -35,6 +35,7 @@ public class UserController {
             incorrect = incorrect + "Дата рождения указана некорректно.\n";
         }
         if (!incorrect.equals("")) {
+            log.info(incorrect);
             throw new UserRequestException(incorrect);
         }
     }
@@ -54,7 +55,7 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<User> getUsers() {
+    public List<User> getAllUsers() {
         return new ArrayList<>(users.values());
     }
 }

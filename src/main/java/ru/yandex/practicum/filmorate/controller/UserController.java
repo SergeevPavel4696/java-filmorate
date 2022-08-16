@@ -50,6 +50,9 @@ public class UserController {
     @PutMapping(value = "/users")
     public User updateUser(@RequestBody User user) {
         isUser(user);
+        if (!users.containsKey(user.getId())) {
+            throw new UserRequestException("пользователь по id " + user.getId() + " не найден!");
+        }
         users.put(user.getId(), user);
         return user;
     }

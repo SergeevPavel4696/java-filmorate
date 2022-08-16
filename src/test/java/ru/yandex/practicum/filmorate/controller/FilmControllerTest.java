@@ -28,14 +28,14 @@ class FilmControllerTest {
     @Test
     void createFilm() {
         filmController.createFilm(film1);
-        Assertions.assertEquals(film1, filmController.getFilms().get(0));
+        Assertions.assertEquals(film1, filmController.getAllFilms().get(0));
     }
 
     @Test
     void updateFilm() {
         filmController.createFilm(film1);
         filmController.updateFilm(film2);
-        Assertions.assertEquals(film2, filmController.getFilms().get(0));
+        Assertions.assertEquals(film2, filmController.getAllFilms().get(0));
     }
 
     @Test

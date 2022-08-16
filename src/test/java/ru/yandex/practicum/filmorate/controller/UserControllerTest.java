@@ -14,34 +14,27 @@ class UserControllerTest {
     UserController userController;
     User user1;
     User user2;
-    User user21;
 
     @BeforeEach
     void initialize() {
         userController = new UserController();
         user1 = User.builder().id(1).email("qwerty.@йцукен.123").login("Пользователь1").name("Иванов Иван")
                 .birthday(LocalDate.of(2011, 1, 1)).build();
-        user2 = User.builder().id(2).email("asdfgh.@фывапр.123").login("Пользователь2").name("Петров Пётр")
+        user2 = User.builder().id(1).email("asdfgh.@фывапр.123").login("Пользователь2").name("Петров Пётр")
                 .birthday(LocalDate.of(2012, 2, 2)).build();
-        user21 = User.builder().id(2).email("asdfgh.@фывапр.123").login("Пользователь2").name("Петров Пётр")
-                .birthday(LocalDate.of(2014, 4, 4)).build();
     }
 
     @Test
     void createUser() {
         userController.createUser(user1);
-        userController.createUser(user2);
         Assertions.assertEquals(user1, userController.getUsers().get(0));
-        Assertions.assertEquals(user2, userController.getUsers().get(1));
     }
 
     @Test
     void updateUser() {
         userController.createUser(user1);
-        userController.createUser(user2);
-        userController.updateUser(user21);
-        Assertions.assertEquals(user1, userController.getUsers().get(0));
-        Assertions.assertEquals(user21, userController.getUsers().get(1));
+        userController.updateUser(user2);
+        Assertions.assertEquals(user2, userController.getUsers().get(0));
     }
 
     @Test

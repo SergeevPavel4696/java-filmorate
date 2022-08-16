@@ -21,7 +21,7 @@ public class UserController {
     private final Map<Integer, User> users = new HashMap<>();
 
     private void isUser(User user) {
-        if (user.getName() == null) {
+        if (user.getName() == null || user.getName().isEmpty()) {
             user.setName(user.getLogin());
         }
         String incorrect = "";

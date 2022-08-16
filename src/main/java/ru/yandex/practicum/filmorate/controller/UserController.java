@@ -52,8 +52,11 @@ public class UserController {
         isUser(user);
         if (users.containsKey(user.getId())) {
             users.put(user.getId(), user);
+        } else {
+            log.info("Задача по указанному id не существует.");
+            throw new UserRequestException("Задача по указанному id не существует.");
         }
-        return users.get(user.getId());
+        return user;
     }
 
     @GetMapping("/users")

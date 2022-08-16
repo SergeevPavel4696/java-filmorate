@@ -18,9 +18,9 @@ class UserControllerTest {
     @BeforeEach
     void initialize() {
         userController = new UserController();
-        user1 = User.builder().id(1).email("qwerty.@йцукен.123").login("Пользователь1").name("Иванов Иван")
+        user1 = User.builder().id(0).email("qwerty.@йцукен.123").login("Пользователь1").name("Иванов Иван")
                 .birthday(LocalDate.of(2011, 1, 1)).build();
-        user2 = User.builder().id(1).email("asdfgh.@фывапр.123").login("Пользователь2").name("Петров Пётр")
+        user2 = User.builder().id(0).email("asdfgh.@фывапр.123").login("Пользователь2").name("Петров Пётр")
                 .birthday(LocalDate.of(2012, 2, 2)).build();
     }
 
@@ -39,7 +39,7 @@ class UserControllerTest {
 
     @Test
     void checkUserWithIncorrectEmail() {
-        User user = User.builder().id(1).email("qwerty.йцукен.123").login("Пользователь").name("Иванов Иван")
+        User user = User.builder().id(0).email("qwerty.йцукен.123").login("Пользователь").name("Иванов Иван")
                 .birthday(LocalDate.of(2011, 1, 1)).build();
         Exception exception = assertThrows(UserRequestException.class, () -> userController.createUser(user));
         Assertions.assertEquals("Адрес электронной почты не указан, либо указан некорректно.\n", exception.getMessage());
@@ -47,7 +47,7 @@ class UserControllerTest {
 
     @Test
     void checkUserWithoutEmail() {
-        User user = User.builder().id(1).login("Пользователь").name("Иванов Иван")
+        User user = User.builder().id(0).login("Пользователь").name("Иванов Иван")
                 .birthday(LocalDate.of(2011, 1, 1)).build();
         Exception exception = assertThrows(UserRequestException.class, () -> userController.createUser(user));
         Assertions.assertNull(user.getEmail());
@@ -56,7 +56,7 @@ class UserControllerTest {
 
     @Test
     void checkUserWithIncorrectLogin() {
-        User user = User.builder().id(1).email("qwerty.@йцукен.123").login("Поль зо ва тель").name("Иванов Иван")
+        User user = User.builder().id(0).email("qwerty.@йцукен.123").login("Поль зо ва тель").name("Иванов Иван")
                 .birthday(LocalDate.of(2011, 1, 1)).build();
         Exception exception = assertThrows(UserRequestException.class, () -> userController.createUser(user));
         Assertions.assertEquals("Логин не указан, либо указан некорректно.\n", exception.getMessage());

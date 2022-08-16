@@ -50,12 +50,7 @@ public class UserController {
     @PutMapping(value = "/users")
     public User updateUser(@RequestBody User user) {
         isUser(user);
-        if (users.containsKey(user.getId())) {
-            users.put(user.getId(), user);
-        } else {
-            log.info("Задача по указанному id не существует.");
-            throw new UserRequestException("Задача по указанному id не существует.");
-        }
+        users.put(user.getId(), user);
         return user;
     }
 

@@ -20,6 +20,8 @@ import java.util.Map;
 public class UserController {
     private final Map<Integer, User> users = new HashMap<>();
 
+    private int id = 0;
+
     private void isUser(User user) {
         if (user.getName() == null || user.getName().isEmpty()) {
             user.setName(user.getLogin());
@@ -43,8 +45,9 @@ public class UserController {
     @PostMapping(value = "/users")
     public User createUser(@RequestBody User user) {
         isUser(user);
+        user.setId(++id);
         users.put(user.getId(), user);
-        return users.get(user.getId());
+        return user;
     }
 
     @PutMapping(value = "/users")

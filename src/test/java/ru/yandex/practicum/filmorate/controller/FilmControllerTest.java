@@ -15,34 +15,27 @@ class FilmControllerTest {
     FilmController filmController;
     Film film1;
     Film film2;
-    Film film21;
 
     @BeforeEach
     void initialize() {
         filmController = new FilmController();
         film1 = Film.builder().id(1).name("Фильм 1").description("Описание фильма 1")
                 .releaseDate(LocalDate.of(2011, 1, 1)).duration(Duration.ofMinutes(111)).build();
-        film2 = Film.builder().id(2).name("Фильм 2").description("Описание фильма 2")
+        film2 = Film.builder().id(1).name("Фильм 2").description("Описание фильма 2")
                 .releaseDate(LocalDate.of(2012, 2, 2)).duration(Duration.ofMinutes(222)).build();
-        film21 = Film.builder().id(2).name("Фильм 2").description("Описание фильма 2")
-                .releaseDate(LocalDate.of(2014, 4, 4)).duration(Duration.ofMinutes(444)).build();
     }
 
     @Test
     void createFilm() {
         filmController.createFilm(film1);
-        filmController.createFilm(film2);
         Assertions.assertEquals(film1, filmController.getFilms().get(0));
-        Assertions.assertEquals(film2, filmController.getFilms().get(1));
     }
 
     @Test
     void updateFilm() {
         filmController.createFilm(film1);
-        filmController.createFilm(film2);
-        filmController.updateFilm(film21);
-        Assertions.assertEquals(film1, filmController.getFilms().get(0));
-        Assertions.assertEquals(film21, filmController.getFilms().get(1));
+        filmController.updateFilm(film2);
+        Assertions.assertEquals(film2, filmController.getFilms().get(0));
     }
 
     @Test

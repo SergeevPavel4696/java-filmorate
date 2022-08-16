@@ -39,14 +39,14 @@ public class FilmController {
         }
     }
 
-    @PostMapping(value = "/film")
+    @PostMapping(value = "/films")
     public Film createFilm(@RequestBody Film film) {
         isFilm(film);
         films.put(film.getId(), film);
         return film;
     }
 
-    @PutMapping(value = "/film")
+    @PutMapping(value = "/films")
     public Film updateFilm(@RequestBody Film film) {
         isFilm(film);
         films.put(film.getId(), film);

@@ -1,7 +1,12 @@
 package ru.yandex.practicum.filmorate.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.filmorate.exceptions.FilmRequestException;
 import ru.yandex.practicum.filmorate.model.Film;
 
@@ -30,7 +35,7 @@ public class FilmController {
         if (film.getReleaseDate() != null && film.getReleaseDate().isBefore(LocalDate.of(1895, 12, 28))) {
             incorrect = incorrect + "Тогда фильмы ещё не снимали.\n";
         }
-        if (film.getDuration() != null && film.getDuration().isNegative()) {
+        if (film.getDuration() != null && film.getDuration() < 0) {
             incorrect = incorrect + "Продолжительность фильма указана некорректно.\n";
         }
         if (!incorrect.isEmpty()) {

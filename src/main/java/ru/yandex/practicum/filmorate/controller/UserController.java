@@ -1,11 +1,7 @@
 package ru.yandex.practicum.filmorate.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exceptions.UserRequestException;
 import ru.yandex.practicum.filmorate.model.User;
 
@@ -17,6 +13,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
+@RequestMapping("/users")
 public class UserController {
     private final Map<Integer, User> users = new HashMap<>();
 
@@ -42,7 +39,7 @@ public class UserController {
         }
     }
 
-    @PostMapping(value = "/users")
+    @PostMapping
     public User createUser(@RequestBody User user) {
         isUser(user);
         user.setId(++id);
@@ -50,14 +47,14 @@ public class UserController {
         return user;
     }
 
-    @PutMapping(value = "/users")
+    @PutMapping
     public User updateUser(@RequestBody User user) {
         isUser(user);
         users.put(user.getId(), user);
         return user;
     }
 
-    @GetMapping("/users")
+    @GetMapping
     public List<User> getAllUsers() {
         return new ArrayList<>(users.values());
     }

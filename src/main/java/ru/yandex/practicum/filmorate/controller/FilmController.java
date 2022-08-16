@@ -20,6 +20,8 @@ import java.util.Map;
 public class FilmController {
     private final Map<Integer, Film> films = new HashMap<>();
 
+    private int id = 0;
+
     private void isFilm(Film film) {
         String incorrect = "";
         if (film.getName() == null || film.getName().isEmpty()) {
@@ -43,6 +45,7 @@ public class FilmController {
     @PostMapping(value = "/films")
     public Film createFilm(@RequestBody Film film) {
         isFilm(film);
+        film.setId(++id);
         films.put(film.getId(), film);
         return film;
     }

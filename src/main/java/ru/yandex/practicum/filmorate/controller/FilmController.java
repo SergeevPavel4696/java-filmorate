@@ -1,11 +1,7 @@
 package ru.yandex.practicum.filmorate.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exceptions.FilmRequestException;
 import ru.yandex.practicum.filmorate.model.Film;
 
@@ -17,6 +13,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
+@RequestMapping("/films")
 public class FilmController {
     private final Map<Integer, Film> films = new HashMap<>();
 
@@ -42,7 +39,7 @@ public class FilmController {
         }
     }
 
-    @PostMapping(value = "/films")
+    @PostMapping
     public Film createFilm(@RequestBody Film film) {
         isFilm(film);
         film.setId(++id);
@@ -50,14 +47,14 @@ public class FilmController {
         return film;
     }
 
-    @PutMapping(value = "/films")
+    @PutMapping
     public Film updateFilm(@RequestBody Film film) {
         isFilm(film);
         films.put(film.getId(), film);
         return film;
     }
 
-    @GetMapping("/films")
+    @GetMapping
     public List<Film> getAllFilms() {
         return new ArrayList<>(films.values());
     }

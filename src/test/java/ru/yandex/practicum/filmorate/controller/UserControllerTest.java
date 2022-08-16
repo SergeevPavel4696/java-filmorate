@@ -27,14 +27,14 @@ class UserControllerTest {
     @Test
     void createUser() {
         userController.createUser(user1);
-        Assertions.assertEquals(user1, userController.getUsers().get(0));
+        Assertions.assertEquals(user1, userController.getAllUsers().get(0));
     }
 
     @Test
     void updateUser() {
         userController.createUser(user1);
         userController.updateUser(user2);
-        Assertions.assertEquals(user2, userController.getUsers().get(0));
+        Assertions.assertEquals(user2, userController.getAllUsers().get(0));
     }
 
     @Test

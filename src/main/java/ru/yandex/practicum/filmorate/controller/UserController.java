@@ -34,7 +34,7 @@ public class UserController {
         if (user.getBirthday() != null && !user.getBirthday().isBefore(LocalDate.now())) {
             incorrect = incorrect + "Дата рождения указана некорректно.\n";
         }
-        if (!incorrect.equals("")) {
+        if (!incorrect.isEmpty()) {
             log.info(incorrect);
             throw new UserRequestException(incorrect);
         }

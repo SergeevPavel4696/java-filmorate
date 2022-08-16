@@ -44,14 +44,14 @@ public class UserController {
     public User createUser(@RequestBody User user) {
         isUser(user);
         users.put(user.getId(), user);
-        return user;
+        return users.get(user.getId());
     }
 
     @PutMapping(value = "/users")
     public User updateUser(@RequestBody User user) {
         isUser(user);
         users.put(user.getId(), user);
-        return user;
+        return users.get(user.getId());
     }
 
     @GetMapping("/users")

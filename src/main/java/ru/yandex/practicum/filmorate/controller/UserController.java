@@ -50,9 +50,10 @@ public class UserController {
     @PutMapping(value = "/users")
     public User updateUser(@RequestBody User user) {
         isUser(user);
-        if (users.containsKey(user.getId())) {
-            users.put(user.getId(), user);
+        if (!users.containsKey(user.getId())) {
+            throw new UserRequestException();
         }
+        users.put(user.getId(), user);
         return user;
     }
 

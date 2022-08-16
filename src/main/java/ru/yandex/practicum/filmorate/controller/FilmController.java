@@ -22,7 +22,7 @@ public class FilmController {
 
     private void isFilm(Film film) {
         String incorrect = "";
-        if (film.getName() == null || film.getName().length() == 0) {
+        if (film.getName() == null || film.getName().isEmpty()) {
             incorrect = incorrect + "Название фильма не указано.\n";
         }
         if (film.getDescription() != null && film.getDescription().length() > 200) {
@@ -34,7 +34,7 @@ public class FilmController {
         if (film.getDuration() != null && film.getDuration().isNegative()) {
             incorrect = incorrect + "Продолжительность фильма указана некорректно.\n";
         }
-        if (!incorrect.equals("")) {
+        if (!incorrect.isEmpty()) {
             log.info(incorrect);
             throw new FilmRequestException(incorrect);
         }

@@ -28,7 +28,7 @@ public class UserController {
         if (user.getEmail() == null || !user.getEmail().contains("@")) {
             incorrect = incorrect + "Адрес электронной почты не указан, либо указан некорректно.\n";
         }
-        if (user.getLogin() == null || user.getLogin().contains(" ")) {
+        if (user.getLogin() == null || user.getLogin().isEmpty() || user.getLogin().contains(" ")) {
             incorrect = incorrect + "Логин не указан, либо указан некорректно.\n";
         }
         if (user.getBirthday() != null && !user.getBirthday().isBefore(LocalDate.now())) {

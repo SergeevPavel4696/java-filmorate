@@ -35,6 +35,7 @@ public class FilmController {
             incorrect = incorrect + "Продолжительность фильма указана некорректно.\n";
         }
         if (!incorrect.equals("")) {
+            log.info(incorrect);
             throw new FilmRequestException(incorrect);
         }
     }
@@ -54,7 +55,7 @@ public class FilmController {
     }
 
     @GetMapping("/films")
-    public List<Film> getFilms() {
+    public List<Film> getAllFilms() {
         return new ArrayList<>(films.values());
     }
 }
